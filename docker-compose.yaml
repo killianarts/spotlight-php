@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: spotlight-php
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  app:
+    build: .  # If you have a custom image name
+    # If you're building from a Dockerfile in the same directory:
+    # build: .
+    container_name: spotlight-php
+    volumes:
+      - ./:/app  # Assuming your code is in the current directory
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "8010:8010" # Example port mapping, adjust as per your container
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      - FRANKENPHP_CONFIG=order php_server before file_server
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=spotlight-php
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+    restart: unless-stopped  # Optional, for auto-restart behavior
+    depends_on:
+      - db
