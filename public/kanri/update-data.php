@@ -1,7 +1,7 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT']."/../start.php";
-require $_SERVER['DOCUMENT_ROOT']."/../lib/Data.php";
+require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 
 create_triggers($db);
 

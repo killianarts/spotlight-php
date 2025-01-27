@@ -1,7 +1,7 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT']."/../start.php";
-require $_SERVER['DOCUMENT_ROOT']."/../lib/Data.php";
+require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $query = $db->prepare('INSERT INTO users (first_name, last_name) VALUES (:first_name, :last_name)');
