@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT']."/../start.php";
+require $_SERVER['DOCUMENT_ROOT']."/../kanri-start.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
