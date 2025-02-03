@@ -2,7 +2,7 @@
 
 use Spotlight\Security;
 
-require $_SERVER['DOCUMENT_ROOT']."/../start.php";
+require $_SERVER['DOCUMENT_ROOT']."/../kanri-start.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/Security.php";
 
@@ -39,27 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 page_head('Edit an Account');
 ?>
+<main class="ml-64 text-blue-50">
+    <h1 class="text-3xl uppercase font-mono-thin">Edit an Account</h1>
+    <form method="post" id="edit-account-form" action="<? echo htmlentities($_SERVER['REQUEST_URI']); ?>" class="grid gap-2 justify-start font-mono-regular">
+        <input type="hidden" name="account_id" value="<?= $account['account_id'] ?>" />
+        <label>
+            <p>Email</p>
+            <input type="text" name="email" value="<?= $account['email'] ?>" class="border border-black" required />
+        </label>
 
-<h1 class="text-3xl uppercase font-mono-thin">Edit an Account</h1>
-
-<form method="post" id="edit-account-form" action="<? echo htmlentities($_SERVER['REQUEST_URI']); ?>" class="grid gap-2 justify-start font-mono-regular">
-    <input type="hidden" name="account_id" value="<?= $account['account_id'] ?>" />
-    <label>
-        <p>Email</p>
-        <input type="text" name="email" value="<?= $account['email'] ?>" class="border border-black" required />
-    </label>
-
-    <label>
-        <p>Password</p>
-        <input type="password" name="password" value="<?= $account['password'] ?>" class="border border-black" required />
-    </label>
-    <button name="edit" type="submit" class="bg-blue-500 text-blue-50">
-        Submit
-    </button>
-    <button name="delete" type="submit" class="bg-rose-500 text-rose-50">
-        Delete
-    </button>
-</form>
+        <label>
+            <p>Password</p>
+            <input type="password" name="password" value="<?= $account['password'] ?>" class="border border-black" required />
+        </label>
+        <button name="edit" type="submit" class="bg-blue-500 text-blue-50">
+            Submit
+        </button>
+        <button name="delete" type="submit" class="bg-rose-500 text-rose-50">
+            Delete
+        </button>
+    </form>
+</main>
 
 <?
 page_foot();

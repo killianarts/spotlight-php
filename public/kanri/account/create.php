@@ -2,7 +2,7 @@
 
 use Spotlight\Security;
 
-require $_SERVER['DOCUMENT_ROOT']."/../start.php";
+require $_SERVER['DOCUMENT_ROOT']."/../kanri-start.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/Security.php";
 
@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $address = "/kanri/user/list";
     header("Location: $address", true, 303);
 };
+
 
 page_head('Create a User');
 ?>

@@ -4,7 +4,7 @@
 use Spotlight\Security;
 use Spotlight\Data;
 
-require $_SERVER['DOCUMENT_ROOT']."/../start.php";
+require $_SERVER['DOCUMENT_ROOT']."/../kanri-start.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/Security.php";
 

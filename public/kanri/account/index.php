@@ -6,21 +6,23 @@ require $_SERVER['DOCUMENT_ROOT']."/../kanri-start.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/data.php";
 require $_SERVER['DOCUMENT_ROOT']."/../lib/Security.php";
 
+$table_name = table_name(__FILE__);
+
 Security\verify_admin();
 
-$table_name = table_name(__FILE__) . "s";
-
 $sql = <<<SQL
-    SELECT p.*, a.email AS author_email
-    FROM post p
-    LEFT JOIN account a ON p.author_id = a.account_id
+    SELECT a.account_id, a.created_at, a.updated_at, a.email, r.role_name AS role_name
+    FROM account a
+    LEFT JOIN role r ON a.account_id = r.role_id
 SQL;
-$data_table = $db->query($sql)->fetchAll();
+$data_table = $db->query($sql);
 
-page_head("Table of $table_name"); ?>
-<main class="ml-74 text-blue-50">
+
+page_head("$table_name table");
+?>
+<main class="ml-64 text-blue-50">
     <h1 class="text-3xl uppercase font-berkeley-uc-black">
-        <span class="text-blue-500/30"><?= breadcrumbs() ?></span>Table of <?= $table_name; ?>
+        <span class="text-blue-500/30"><?= breadcrumbs() ?></span><?= $table_name . " table"; ?>
     </h1>
     <button id="make-account-button"
             class="my-5 px-3 py-1 bg-blue-50 text-(--main-color) rounded-xs font-berkeley-uc-black uppercase
@@ -64,7 +66,8 @@ page_head("Table of $table_name"); ?>
             </form>
         </fieldset>
     </div>
-    <?= divtable($data_table, 'account', ['post_id', 'created_at', 'updated_at', 'title', 'author']); ?>
+    <?= divtable($data_table, $table_name, ['account_id', 'created_at', 'updated_at', 'email', 'role_name']); ?>
 </main>
+
 <?
 page_foot();
