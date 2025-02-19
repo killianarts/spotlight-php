@@ -23,16 +23,24 @@ page_head("About"); ?>
                             <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
                                 <div class="lg:pl-20">
                                     <div class="max-w-xs px-2.5 lg:max-w-none">
-                                        <img alt="" loading="lazy" width="800" height="800" decoding="async" data-nimg="1" class="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800" sizes="(min-width: 1024px) 32rem, 20rem" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=16&amp;q=75 16w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=32&amp;q=75 32w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=48&amp;q=75 48w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=64&amp;q=75 64w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=96&amp;q=75 96w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=128&amp;q=75 128w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=256&amp;q=75 256w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=384&amp;q=75 384w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportrait.79754e9e.jpg&amp;w=3840&amp;q=75" style="color: transparent;">
+                                        <img alt="" loading="lazy" width="800" height="800" decoding="async" data-nimg="1" class="object-cover" sizes="(min-width: 1024px) 32rem, 20rem" src="/assets/social-media-headshot.png" style="color: transparent;">
                                     </div>
                                 </div>
                                 <div class="lg:order-first lg:row-span-2">
-                                    <h1 class="text-4xl font-tx-uc-black tracking-tight uppercase text-zinc-800 sm:text-5xl dark:text-zinc-100">I'm Spencer Sharp. I live in New York City, where I design the future.</h1>
+                                    <h1 class="text-4xl font-tx-uc-black tracking-tight uppercase text-zinc-800 sm:text-5xl dark:text-zinc-100">I'm Micah Killian. I'm a software developer living in Japan.</h1>
                                     <div class="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-                                        <p class="font-tx">I've loved making things for as long as I can remember, and wrote my first program when I was 6 years old, just two weeks after my mom brought home the brand new Macintosh LC 550 that I taught myself to type on.</p>
-                                        <p class="font-tx">The only thing I loved more than computers as a kid was space. When I was 8, I climbed the 40-foot oak tree at the back of our yard while wearing my older sister's motorcycle helmet, counted down from three, and jumped — hoping the tree was tall enough that with just a bit of momentum I'd be able to get to orbit.</p>
-                                        <p class="font-tx">I spent the next few summers indoors working on a rocket design, while I recovered from the multiple surgeries it took to fix my badly broken legs. It took nine iterations, but when I was 15 I sent my dad's Blackberry into orbit and was able to transmit a photo back down to our family computer from space.</p>
-                                        <p class="font-tx">Today, I'm the founder of Planetaria, where we're working on civilian space suits and manned shuttle kits you can assemble at home so that the next generation of kids really <em>can</em> make it to orbit — from the comfort of their own backyards.</p>
+                                        <p class="font-tx">
+                                            This is a demo site I made in less than a month using vanilla PHP. Before making this site, I only had a couple of weeks experience with PHP writing a small Laravel demo.
+                                        </p>
+                                        <p class="font-tx">
+                                            This site has the following features:
+                                            <ul class="list-disc list-inside font-tx">
+                                                <li>Blogging</li>
+                                                <li>Admin interface w/auth</li>
+                                            </ul>
+                                        </p>
+                                        <p class="font-tx">The blogging functionality was completed in less than two weeks, but I budgeted some time to work on a nice dashboard for the backend. I used the <a class="font-black underline text-blue-600 hover:text-blue-500" href="https://spotlight.tailwindui.com/">Spotlight template from TailwindUI</a> for this and the other pages on the frontend. The backend dashboard is custom designed and styled with Tailwind.</p>
+                                        <p class="font-tx">My main work has been in Python using Django, but I found the experience of learning PHP and implementing a primitive personal framework surprisingly fun and easy.</p>
                                     </div>
                                 </div>
                                 <div class="lg:pl-20">

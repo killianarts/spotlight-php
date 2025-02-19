@@ -42,8 +42,8 @@ function lispify($str) {
     return str_replace([" ", "_"], "-", $str);
 }
 
-function blue_button($text) { ?>
-    <button name="submit" type="submit"
+function blue_button($text, $name="submit", $type="submit") { ?>
+    <button name="<?= $name ?>" type="<?= $type ?>"
             class="font-berkeley-black text-blue-50 uppercase px-3 py-1
                   bg-(--main-color) rounded-xs
                   inset-ring inset-ring-blue-600/30
@@ -55,6 +55,18 @@ function blue_button($text) { ?>
     </button>
 <? };
 
+function red_button($text, $name="submit", $type="submit") { ?>
+    <button name="<?= $name ?>" type="<?= $type ?>"
+            class="font-berkeley-black text-rose-50 uppercase px-3 py-1
+                  bg-(--danger-color) rounded-xs
+                  inset-ring inset-ring-rose-600/30
+                  border-l border-t border-l-red-700/30 border-t-red-700/30
+                  border-r border-b border-r-emerald-700/30 border-b-emerald-700/30
+                  hover:bg-rose-500 hover:shadow
+                  hover:shadow-orange-600/50">
+        <?= lispify($text); ?>
+    </button>
+<? };
 // TODO Figure out arguments like id and hyperscript
 function white_button($text) { ?>
     <button id="make-post-button"
@@ -84,7 +96,7 @@ function divtable($stmt, $sql_table_name, $table_columns) {
 ?>
     <div>
         <div class="grid bg-blue-950 px-6 py-1 rounded-xs">
-            <p class="text-blue-900 uppercase font-berkeley-uc-black">(mapcar #'format-account-row account-array) =></p>
+            <p class="text-blue-900 uppercase font-berkeley-uc-black">(mapcar #'format-account-row account-array) => <? if ($row_count != 1) { echo $row_count . " rows returned."; } else { echo $row_count . " row returned."; }; ?> Evaluation took: <?= $elapsed ?> seconds</p>
             <div-table class="table">
                 <div-thead class="table-header-group">
                     <?= table_header($table_columns) ?>
@@ -101,7 +113,7 @@ function divtable($stmt, $sql_table_name, $table_columns) {
                         "$sql_table_name" . "_id" => $result["$sql_table_name" . "_id"]
                     );
                     $q = http_build_query($get_data); ?>
-                    <a class="table-row px-2 py-1
+                    <a class="table-row rounded-lg px-2 py-1
                               font-berkeley-uc underline text-blue-50
                               hover:bg-blue-50 hover:text-(--main-color)"
                        href="/kanri/<?= $sql_table_name; ?>/edit?<? echo $q; ?>">
@@ -111,7 +123,7 @@ function divtable($stmt, $sql_table_name, $table_columns) {
                     </a>
                 <? }; ?>
             </div-table>
-            <p class="text-blue-900 text-right uppercase font-berkeley-uc-black"><? if ($row_count != 1) { echo $row_count . " rows returned."; } else { echo $row_count . " row returned."; }; ?> Evaluation took: <?= $elapsed ?> seconds</p>
+            <p class="text-blue-900 text-right uppercase font-berkeley-uc-black invisible">---</p>
         </div>
     </div>
 <? };
@@ -120,7 +132,7 @@ function sidebar_start() {
     global $kanri_dir; ?>
     <div class="flex">
         <div class="relative isolate flex min-h-svh w-full bg-blue-900 max-lg:flex-col
-                    dark:bg-blue-900 dark:lg:bg-blue-50">
+                    dark:bg-blue-900 dark:lg:bg-blue-900">
             <div class="fixed bg-blue-900 inset-y-0 left-0 w-64 max-lg:hidden">
                 <nav class="font-berkeley-black uppercase text-blue-200 flex h-full min-h-0 flex-col">
                     <div class="flex flex-col border-b border-blue-50/5 p-4 dark:border-white/5 [&amp;>[data-slot=section]+[data-slot=section]]:mt-2.5">
@@ -140,7 +152,7 @@ function sidebar_start() {
                                     </div>
                                     <span class="uppercase font-berkeley-uc-black text-3xl text-blue-50">Shiso</span>
                             </button>
-                        </span>
+                                </span>
                     </div>
                     <div class="flex flex-1 flex-col overflow-y-auto p-4 [&amp;>[data-slot=section]+[data-slot=section]]:mt-8">
                         <div data-slot="section" class="flex flex-col gap-0.5">
@@ -235,12 +247,11 @@ function page_head($title = "Write a title for this page", $show_sidebar = true)
             <meta charset="utf-8">
             <meta name=viewport content="width=device-width, initial-scale=1">
             <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-            <script src="/assets/js/web-components.js" type="module"></script>
             <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous"></script>
             <script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
             <style type="text/tailwindcss">
-             @source "/assets/js/web-components.js";
-             @custom-variant dark (&:where(.dark, .dark *));
+             /* @source "/assets/js/web-components.js"; */
+             /* @custom-variant dark (&:where(.dark, .dark *)); */
              @theme {
                  --font-berkeley-uc-thin: "Berkeley Mono Thin UltraCondensed", ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
                  --font-berkeley-uc: "Berkeley Mono UltraCondensed", ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
@@ -252,6 +263,7 @@ function page_head($title = "Write a title for this page", $show_sidebar = true)
                  --font-berkeley-medium: "Berkeley Mono Medium", ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
                  --drop-shadow-px: 2px 2px 0px var(--color-blue-100);
                  --main-color: var(--color-blue-900);
+                 --danger-color: var(--color-rose-900);
              }
             </style>
         </head>
@@ -271,9 +283,9 @@ function form_field_id($field_name) {
     return "id_".$field_name;
 };
 
-function shiso_input($name, $type, $id = null, $value = null) { ?>
+function shiso_input($name, $type, $id = null, $value = null, $override = null) { ?>
     <div class="has-focus:ring has-focus:ring-emerald-800 rounded-xs">
-        <div class="has-focus:bg-(--main-color) inset-ring-transparent pt-1 inset-ring-3 has-focus:inset-ring-(--main-color) rounded-xs has-focus:shadow-md has-focus:shadow-cyan-600/50">
+        <div class="<?= $override; ?> has-focus:bg-(--main-color) inset-ring-transparent pt-1 inset-ring-3 has-focus:inset-ring-(--main-color) rounded-xs has-focus:shadow-md has-focus:shadow-cyan-600/50">
             <label>
                 <fieldset class="group border-3 border-(--main-color) rounded-xs has-focus:border-transparent">
                     <legend class="ml-[1ch] px-[1ch] text-(--main-color) group-has-focus:text-blue-50 font-berkeley-black uppercase">
@@ -282,8 +294,8 @@ function shiso_input($name, $type, $id = null, $value = null) { ?>
                     <? if ($type != "select") { ?>
                         <input id="<?= $id ?? form_field_id($name); ?>"
                                name="<?= $name ?>"
-                               type="<?= $type ?>" <? if ($value) { echo "value=$value"; }; ?>
-                               class="text-sm text-blue-50 pl-[2ch] pb-[1ch] w-full focus:outline-none" />
+                               type="<?= $type ?>" value="<? if ($value) { echo htmlspecialchars($value); }; ?>"
+                               class="text-sm text-blue-950 focus:text-blue-50 pl-[2ch] pb-[1ch] w-full focus:outline-none" />
                     <? } else { ?>
                         <select id="<?= $id ?? form_field_id($name) ?>" name="<?= $name ?>"
                                 class="">

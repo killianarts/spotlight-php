@@ -15,7 +15,7 @@ $sql = <<<SQL
     FROM post p
     LEFT JOIN account a ON p.author_id = a.account_id
 SQL;
-$data_table = $db->query($sql)->fetchAll();
+$data_table = $db->query($sql);
 
 page_head("Table of $table_name"); ?>
 <main class="ml-74 text-blue-50">
@@ -64,7 +64,7 @@ page_head("Table of $table_name"); ?>
             </form>
         </fieldset>
     </div>
-    <?= divtable($data_table, 'account', ['post_id', 'created_at', 'updated_at', 'title', 'author']); ?>
+    <?= divtable($data_table, 'post', ['post_id', 'created_at', 'updated_at', 'title', 'author_email']); ?>
 </main>
 <?
 page_foot();

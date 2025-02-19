@@ -51,11 +51,16 @@ page_head("Home"); ?>
                         <div class="mx-auto max-w-2xl lg:max-w-5xl">
                             <div class="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
                                 <div class="flex flex-col gap-16">
-                                    <? foreach($posts as $post) { ?>
+                                    <? foreach($posts as $post) {
+                                        $get_data = array(
+                                            'post_id' => $post['post_id']
+                                        );
+                                        $q = http_build_query($get_data);
+                                    ?>
                                         <article class="group relative flex flex-col items-start">
                                             <h2 class="font-tx-uc-medium tracking-widest text-xl uppercase tracking-tight text-stone-800 dark:text-stone-100">
                                                 <div class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-stone-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-stone-800/50"></div>
-                                                <a href="/articles/crafting-a-design-system-for-a-multiplanetary-future">
+                                                <a href="/article?<?= $q ?>">
                                                     <span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                                                     <span class="relative z-10"><?= $post['title'] ?></span>
                                                 </a>

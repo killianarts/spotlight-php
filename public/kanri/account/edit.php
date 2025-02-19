@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 page_head('Edit an Account');
 ?>
-<main class="ml-64 text-blue-50">
+<main class="ml-64 text-blue-5">
     <h1 class="text-3xl uppercase font-mono-thin">Edit an Account</h1>
     <form method="post" id="edit-account-form" action="<? echo htmlentities($_SERVER['REQUEST_URI']); ?>" class="grid gap-2 justify-start font-mono-regular">
         <input type="hidden" name="account_id" value="<?= $account['account_id'] ?>" />

@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($email = $user['email'] && password_verify($password, $user['password'])) {
         $_SESSION['account_id'] = $user['account_id'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['password'] = $user['password'];
         $_SESSION['role_id'] = $user['role_id'];
-        header("Location: /kanri/post/list");
+        header("Location: /kanri/post");
         exit;
     } else {
         $passwords_match = "The passwords didn't match.";
+        echo $passwords_match;
     };
 };
 
@@ -33,6 +33,7 @@ page_head('Login', false); ?>
         <h1 class="text-3xl text-(--main-color) uppercase font-berkeley-uc-black
                    before:bg-clip-text before:bg-conic before:from-blue-600 before:via-emerald-300 before:to-blue-700
                    before:text-transparent before:content-['#\'']""><?= lispify("Shiso Dashboard Login"); ?></h1>
+
         <form method="post" id="login-form"
               action="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"
               class="space-y-2">

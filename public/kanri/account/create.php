@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 page_head('Create a User');
 ?>
 
-<h1 class="text-3xl font-mono-thin uppercase">Create a User</h1>
+<h1 class="text-3xl font-berkeley-thin uppercase">Create a User</h1>
 
 <form method="post" id="create-user-form" action="<? echo htmlentities($_SERVER['REQUEST_URI']); ?>" class="grid gap-2 justify-start">
     <label class="font-mono-regular">

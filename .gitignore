@@ -3,5 +3,5 @@
 /composer.lock
 *.db
 /vendor/
-*.DS_Store
-*/*/.DS_Store
+.DS_Store
+.gitignore
